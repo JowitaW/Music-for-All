@@ -15,10 +15,11 @@
 <nav class="navbar custom-bg">
     <div class="container-fluid">
         <a class="navbar-brand">Music for All</a>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        <div class="d-flex">
+            <!-- New buttons -->
+            <button class="btn btn-primary button-spacing" type="button">Log In</button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+        </div>
     </div>
 </nav>
 
@@ -61,6 +62,83 @@
     </button>
 </div>
 
+
+<!-- Second carousel -->
+<div id="carouselExampleAutoplaying" class="carousel slide custom-carousel">
+    <div class="carousel-inner">
+        <!-- First slide with multiple logos -->
+        <div class="carousel-item active">
+            <div class="container logo-carousel">
+                <div class="row text-center">
+                    <div class="col-4">
+                        <img src="intro-carousel-pictures/logo1.png" class="d-block mx-auto" alt="Logo 1">
+                    </div>
+                    <div class="col-4">
+                        <img src="intro-carousel-pictures/logo2.png" class="d-block mx-auto" alt="Logo 2">
+                    </div>
+                    <div class="col-4">
+                        <img src="intro-carousel-pictures/logo3.png" class="d-block mx-auto" alt="Logo 3">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Second slide with multiple logos -->
+        <div class="carousel-item">
+            <div class="container logo-carousel">
+                <div class="row text-center">
+                    <div class="col-4">
+                        <img src="intro-carousel-pictures/logo4.png" class="d-block mx-auto" alt="Logo 4">
+                    </div>
+                    <div class="col-4">
+                        <img src="intro-carousel-pictures/logo5.png" class="d-block mx-auto" alt="Logo 5">
+                    </div>
+                    <div class="col-4">
+                        <img src="intro-carousel-pictures/logo6.png" class="d-block mx-auto" alt="Logo 6">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls for the carousel -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Registration Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="registerModalLabel">Register</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

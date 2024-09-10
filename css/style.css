@@ -6,3 +6,33 @@
     height: 500px;
     object-fit: cover;
 }
+
+.navbar {
+    height: 120px;
+}
+
+.logo-carousel img {
+    max-width: 100px; /* Adjust the width as needed */
+    height: auto;     /* Maintain aspect ratio */
+}
+
+/* CSS to position the carousel lower */
+.custom-carousel {
+    margin-top: 150px; /* Adjust the value to position the carousel lower */
+}
+
+.button-spacing {
+    margin-right: 20px; /* Adjust as needed */
+}
+
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 1rem);
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 500px; /* Adjust the width as needed */
+    margin: 0 auto;
+}
