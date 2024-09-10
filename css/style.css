@@ -2,8 +2,9 @@ body{
     font-family: "Satisfy", cursive;
 }
 
-.custom-bg{
-    background-color: bisque;
+.navbar-nav {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .carousel-inner img {
