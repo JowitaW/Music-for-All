@@ -1,3 +1,7 @@
+body{
+    font-family: "Satisfy", cursive;
+}
+
 .custom-bg{
     background-color: bisque;
 }
@@ -35,4 +39,9 @@
     width: 100%;
     max-width: 500px; /* Adjust the width as needed */
     margin: 0 auto;
+}
+
+.navbar-brand {
+    font-family: "Satisfy", cursive;
+    font-size: 60px;
 }
