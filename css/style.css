@@ -1,34 +1,91 @@
-body{
-    font-family: "Satisfy", cursive;
-    font-size: 25px;
+:root {
+    --main-bg-color: #F3E9DC; /* Warm, soft beige for a light, inviting background */
+    --secondary-color: #B08968; /* A rich brown tone to evoke wood and warmth */
+    --accent-color: #DAB785; /* Golden hue to hint at brass instruments and elegance */
+    --neutral-dark: #4B3832; /* Dark brown, adding a classic, timeless feel */
+    --neutral-light: #A29B8B; /* Soft neutral for balance and light contrasts */
+    --font-color-light: #F3E9DC; /* Light font color for contrast on dark elements */
+    --font-color-dark: #2C2C2C; /* A darker font for general text */
 }
 
-.navbar-nav {
-    margin-left: auto;
-    margin-right: auto;
+/* General Body and Text */
+body {
+    background-color: var(--main-bg-color);
+    color: var(--font-color-dark);
+    font-family: 'Roboto', sans-serif;
 }
 
-.carousel-inner img {
-    height: 500px;
-    object-fit: cover;
-}
-
+/* Navbar */
 .navbar {
-    height: 120px;
+    background-color: var(--neutral-dark);
 }
 
-.logo-carousel img {
-    max-width: 100px; /* Adjust the width as needed */
-    height: auto;     /* Maintain aspect ratio */
+.navbar-brand, .nav-link {
+    color: var(--font-color-light) !important;
 }
 
-/* CSS to position the carousel lower */
-.custom-carousel {
-    margin-top: 150px; /* Adjust the value to position the carousel lower */
+.navbar-brand:hover, .nav-link:hover {
+    color: var(--accent-color) !important;
 }
 
-.button-spacing {
-    margin-right: 20px; /* Adjust as needed */
+/* Buttons */
+.btn-login, .btn-register {
+    color: var(--font-color-light);
+    background-color: var(--secondary-color);
+}
+
+.btn-login:hover, .btn-register:hover {
+    background-color: var(--neutral-light);
+    color: var(--font-color-light);
+}
+
+/* Hero Section */
+.hero-section {
+    background-color: var(--secondary-color);
+    color: var(--font-color-light);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-section h1 {
+    font-family: 'Satisfy', cursive;
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+}
+
+/* Feature Section */
+.feature-section {
+    background-color: var(--accent-color);
+    color: var(--font-color-light);
+    padding: 50px 0;
+}
+
+.feature-section .card {
+    background-color: var(--neutral-light);
+    border: none;
+}
+
+.feature-section .card-title {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/* Footer */
+footer {
+    background-color: var(--neutral-dark);
+    color: var(--font-color-light);
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Modal */
+.modal-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
 }
 
 .modal-dialog {
@@ -38,12 +95,52 @@ body{
 }
 
 .modal-content {
-    width: 100%;
-    max-width: 500px; /* Adjust the width as needed */
-    margin: 0 auto;
+    background-color: var(--neutral-light);
+    color: var(--neutral-dark);
+    border-radius: 10px;
 }
 
-.navbar-brand {
-    font-family: "Satisfy", cursive;
-    font-size: 60px;
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+/* Form */
+.form-control {
+    background-color: var(--font-color-light);
+    color: var(--neutral-dark);
+}
+
+/* Modal Buttons */
+.btn-modal {
+    background-color: var(--secondary-color);
+    color: var(--font-color-light);
+}
+
+.btn-modal:hover {
+    background-color: var(--neutral-dark);
+    color: var(--font-color-light);
+}
+
+/* Carousel */
+.carousel-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 86vh;
+    padding: 20px;
+}
+.carousel-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+.carousel-item {
+    text-align: center;
+}
+.carousel-control-prev,
+.carousel-control-next {
+    filter: invert(100%);
 }
