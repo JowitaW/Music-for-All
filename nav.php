@@ -46,30 +46,64 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="post">
                     <div class="mb-3">
                         <label for="loginEmail" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="loginEmail" placeholder="Enter your email">
+                        <input type="email" name="login_email" class="form-control" id="loginEmail"
+                               placeholder="Enter your email">
                     </div>
                     <div class="mb-3">
                         <label for="loginPassword" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="loginPassword"
+                        <input type="password" name="login_password" class="form-control" id="loginPassword"
                                placeholder="Enter your password">
                     </div>
+
+                    <div class="text-center mt-3">
+                        <p>Don't have an account?
+                            <a href="#" id="goToRegister">Register here</a>
+                        </p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="login" class="btn btn-modal">Login</button>
+                    </div>
                 </form>
-                <div class="text-center mt-3">
-                    <p>Don't have an account?
-                        <a href="#" id="goToRegister">Register here</a>
-                    </p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-modal" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-modal">Login</button>
+                <?php
+                try {
+                    $db = new PDO("mysql:host=localhost;dbname=m4a", "root", "");
+                    if (isset($_POST['login'])) {
+                        $login_email = $_POST['login_email'];
+                        $login_password = $_POST['login_password'];
+
+                        // Fetch user from the database
+                        $query = $db->prepare("SELECT * FROM register WHERE email = :email AND password = :password");
+                        $query->bindParam('email', $login_email);
+                        $query->bindParam('password', $login_password);
+                        $query->execute();
+
+                        if ($query->rowCount() > 0) {
+                            // User found
+                            echo "Login successful!";
+                            // You can also redirect or start a session here
+                            // For example:
+                            // session_start();
+                            // $_SESSION['user'] = $query->fetch(PDO::FETCH_ASSOC);
+                            // header('Location: dashboard.php');
+                        } else {
+                            // User not found or incorrect credentials
+                            echo "Invalid email or password";
+                        }
+                    }
+                } catch (PDOException $e) {
+                    die("Could not connect to the database: " . $e->getMessage());
+                }
+                ?>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- Register Modal -->
 <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
