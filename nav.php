@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
@@ -24,18 +26,27 @@
                 <li class="nav-item">
                     <a class="nav-link" href="contact.php">Contact</a>
                 </li>
-                <li class="nav-item">
-                    <button class="btn btn-login me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <button class="btn btn-register" data-bs-toggle="modal" data-bs-target="#registerModal">Register
-                    </button>
-                </li>
+
+                <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true): ?>
+                    <li class="nav-item">
+                        <span class="nav-link">Hello, <?php echo $_SESSION['user']; ?></span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
+                    </li>
+                <?php else: ?>
+                    <li class="nav-item">
+                        <button class="btn btn-login me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-register" data-bs-toggle="modal" data-bs-target="#registerModal">Register</button>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
     </div>
 </nav>
+
 
 <!-- Login Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
@@ -49,19 +60,11 @@
                 <form method="post">
                     <div class="mb-3">
                         <label for="loginEmail" class="form-label">Email address</label>
-                        <input type="email" name="login_email" class="form-control" id="loginEmail"
-                               placeholder="Enter your email">
+                        <input type="email" name="login_email" class="form-control" id="loginEmail" placeholder="Enter your email">
                     </div>
                     <div class="mb-3">
                         <label for="loginPassword" class="form-label">Password</label>
-                        <input type="password" name="login_password" class="form-control" id="loginPassword"
-                               placeholder="Enter your password">
-                    </div>
-
-                    <div class="text-center mt-3">
-                        <p>Don't have an account?
-                            <a href="#" id="goToRegister">Register here</a>
-                        </p>
+                        <input type="password" name="login_password" class="form-control" id="loginPassword" placeholder="Enter your password">
                     </div>
 
                     <div class="modal-footer">
@@ -69,7 +72,9 @@
                         <button type="submit" name="login" class="btn btn-modal">Login</button>
                     </div>
                 </form>
+
                 <?php
+                ob_start(); // Start output buffering
                 try {
                     $db = new PDO("mysql:host=localhost;dbname=m4a", "root", "");
                     if (isset($_POST['login'])) {
@@ -83,21 +88,22 @@
                         $query->execute();
 
                         if ($query->rowCount() > 0) {
-                            // User found
-                            echo "Login successful!";
-                            // You can also redirect or start a session here
-                            // For example:
-                            // session_start();
-                            // $_SESSION['user'] = $query->fetch(PDO::FETCH_ASSOC);
-                            // header('Location: dashboard.php');
+                            // User found - Store user data in session
+                            $user = $query->fetch(PDO::FETCH_ASSOC);
+                            $_SESSION['user'] = $user['name']; // Store the username in session
+                            $_SESSION['logged_in'] = true;
+
+                            // Redirect to homepage or dashboard
+                            header("Location: index.php");
+                            exit(); // Always exit after header redirect
                         } else {
-                            // User not found or incorrect credentials
-                            echo "Invalid email or password";
+                            echo "Invalid email or password.";
                         }
                     }
                 } catch (PDOException $e) {
-                    die("Could not connect to the database: " . $e->getMessage());
+                    die("Database connection failed: " . $e->getMessage());
                 }
+                ob_end_flush(); // End output buffering and send output
                 ?>
             </div>
         </div>
