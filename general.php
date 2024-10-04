@@ -91,6 +91,7 @@ session_start();
                             // User found - Store user data in session
                             $user = $query->fetch(PDO::FETCH_ASSOC);
                             $_SESSION['user'] = $user['name']; // Store the username in session
+                            $_SESSION['user_id'] = $user['id']; //Store the user ID in session
                             $_SESSION['logged_in'] = true;
 
                             // Redirect to homepage or dashboard
@@ -109,6 +110,29 @@ session_start();
         </div>
     </div>
 </div>
+
+<?php
+// Ensure the user is logged in before showing the review form
+if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true): ?>
+
+    <div class="container mt-5">
+        <h3>Leave a Review</h3>
+        <form method="post" action="submit_review.php">
+            <div class="mb-3">
+                <label for="reviewText" class="form-label">Your Review</label>
+                <textarea name="review_text" class="form-control" id="reviewText" rows="3" placeholder="Write your review here..."></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="rating" class="form-label">Rating (1 to 5)</label>
+                <input type="number" name="rating" class="form-control" id="rating" min="1" max="5" placeholder="Rate from 1 to 5">
+            </div>
+            <button type="submit" name="submit_review" class="btn btn-primary">Submit Review</button>
+        </form>
+    </div>
+
+<?php else: ?>
+    <p>Please <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">log in</a> to leave a review.</p>
+<?php endif; ?>
 
 
 <!-- Register Modal -->
