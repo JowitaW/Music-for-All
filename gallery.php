@@ -14,7 +14,7 @@
 
 <!-- Navbar -->
 <?php
-include_once "nav.php";
+include_once "general.php";
 ?>
 
 <!-- Carousel Header -->

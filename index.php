@@ -14,7 +14,7 @@
 
 <!-- Navbar -->
 <?php
-include_once "nav.php";
+include_once "general.php";
 ?>
 
 <!-- Hero Section -->
@@ -34,7 +34,7 @@ include_once "nav.php";
                 <div class="card p-4 mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Discover New Music</h5>
-                        <p class="card-text">Explore thousands of songs and albums across different genres.</p>
+                        <p class="card-t    ext">Explore thousands of songs and albums across different genres.</p>
                     </div>
                 </div>
             </div>
